@@ -69,7 +69,6 @@ CertiFlow features a visible **1-Click Demo Mode Switcher** both on the `/login`
 | **Anika** | `TRAINING_CENTRE` | `anika@certiflow.gov.in` | `CertiFlow@2026` | Creates batches, uploads candidate CSVs, submits & fixes returned batches. |
 | **Dev** | `DISTRICT_OFFICER` | `dev@certiflow.gov.in` | `CertiFlow@2026` | Reviews assigned district batches, provides District Approval 1 of 2. |
 | **Meera** | `DISTRICT_OFFICER` | `meera@certiflow.gov.in` | `CertiFlow@2026` | Provides District Approval 2 of 2. |
-| **Kabir** | `DISTRICT_OFFICER` | `kabir@certiflow.gov.in` | `CertiFlow@2026` | Alternate District Officer for Bengaluru Urban. |
 | **Neha** | `QUALITY_TEAM` | `neha@certiflow.gov.in` | `CertiFlow@2026` | Quality compliance review for batches with $\ge 50$ candidates. |
 | **Farah** | `STATE_OFFICE` | `farah@certiflow.gov.in` | `CertiFlow@2026` | Final state authorization, triggers certificate generation, certificate revocation. |
 

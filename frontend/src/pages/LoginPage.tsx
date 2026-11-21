@@ -61,7 +61,7 @@ export const LoginPage: React.FC = () => {
       case 'TRAINING_CENTRE':
         return 'Centre Desk';
       case 'DISTRICT_OFFICER':
-        return 'District Off.';
+        return name === 'Dev' ? 'District Off. 1' : 'District Off. 2';
       case 'QUALITY_TEAM':
         return 'Quality Team';
       case 'STATE_OFFICE':
@@ -71,16 +71,16 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-  const getOfficerLevelFull = (role: string) => {
+  const getOfficerLevelFull = (role: string, name?: string) => {
     switch (role) {
       case 'TRAINING_CENTRE':
         return 'Training Centre Head';
       case 'DISTRICT_OFFICER':
-        return 'District Skill Officer (DSDO)';
+        return name === 'Dev' ? 'District Skill Officer (DSDO - Tier 1)' : 'District Verification Officer (DVO - Tier 1)';
       case 'QUALITY_TEAM':
-        return 'Quality Assurance Auditor';
+        return 'Quality Assurance Auditor (Tier 2)';
       case 'STATE_OFFICE':
-        return 'State Mission Director';
+        return 'State Mission Director (Tier 3)';
       default:
         return 'Government Official';
     }
@@ -153,9 +153,9 @@ export const LoginPage: React.FC = () => {
             <span className="text-[10px] text-slate-400 font-mono">1-Click Auth</span>
           </div>
 
-          {/* Row 1: 4 Officers */}
-          <div className="grid grid-cols-4 gap-2 mb-2">
-            {demoUsers.slice(0, 4).map((account) => {
+          {/* Row 1: Training Centre + 2 District Officers */}
+          <div className="grid grid-cols-3 gap-2 mb-2">
+            {demoUsers.slice(0, 3).map((account) => {
               const Icon = getPersonaIcon(account.role);
               const isActive = selectedDemo === account.email;
               const levelName = getOfficerLevelName(account.role, account.name);
@@ -165,7 +165,7 @@ export const LoginPage: React.FC = () => {
                   type="button"
                   onClick={() => handleSelectQuickLogin(account)}
                   disabled={isSubmitting || isLoading}
-                  className={`flex flex-col items-center justify-center py-2.5 px-1.5 rounded-2xl border transition-all text-xs font-semibold ${
+                  className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-2xl border transition-all text-xs font-semibold ${
                     isActive
                       ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-sm'
                       : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
@@ -173,8 +173,8 @@ export const LoginPage: React.FC = () => {
                   title={`${account.name} - ${account.role}`}
                 >
                   <Icon className={`w-4 h-4 mb-1 ${isActive ? 'text-white' : 'text-slate-500'}`} />
-                  <span className="truncate max-w-[70px] font-bold text-[11px]">{levelName}</span>
-                  <span className={`text-[9.5px] truncate max-w-[70px] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>
+                  <span className="truncate max-w-[85px] font-bold text-[11px]">{levelName}</span>
+                  <span className={`text-[9.5px] truncate max-w-[85px] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>
                     ({account.name.split(' ')[0]})
                   </span>
                 </button>
@@ -184,7 +184,7 @@ export const LoginPage: React.FC = () => {
 
           {/* Row 2: Quality & State Directorate */}
           <div className="grid grid-cols-2 gap-2">
-            {demoUsers.slice(4, 6).map((account) => {
+            {demoUsers.slice(3, 5).map((account) => {
               const Icon = getPersonaIcon(account.role);
               const isActive = selectedDemo === account.email;
               const levelName = getOfficerLevelName(account.role, account.name);
@@ -219,7 +219,7 @@ export const LoginPage: React.FC = () => {
           <div className="flex items-center justify-between mb-1">
             <span className="font-bold text-slate-900 text-[11px] flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-              <span>{getOfficerLevelFull(currentAccount?.role || 'DISTRICT_OFFICER')}</span>
+              <span>{getOfficerLevelFull(currentAccount?.role || 'DISTRICT_OFFICER', currentAccount?.name)}</span>
             </span>
             <span className="text-[9.5px] font-mono text-slate-500 bg-white border border-slate-200 px-1.5 py-0.5 rounded-md font-semibold">
               Default Credentials

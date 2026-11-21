@@ -195,16 +195,6 @@ async function main() {
     },
   });
 
-  const userKabir = await prisma.user.create({
-    data: {
-      name: 'Kabir',
-      email: 'kabir@certiflow.gov.in',
-      passwordHash,
-      role: Role.DISTRICT_OFFICER,
-      districtId: distDelhi.id,
-    },
-  });
-
   const userNeha = await prisma.user.create({
     data: {
       name: 'Neha',
@@ -223,7 +213,7 @@ async function main() {
     },
   });
 
-  console.log('✓ Created 6 Demo Users (Anika, Dev, Meera, Kabir, Neha, Farah)');
+  console.log('✓ Created 5 Demo Users (Anika, Dev, Meera, Neha, Farah)');
 
   // Master Pool of Authentic Candidate Names
   const indianNames = [
@@ -319,7 +309,7 @@ async function main() {
   });
   console.log('✓ Batch 1: Created (50 Candidates, SUBMITTED - In Dev\'s District Queue)');
 
-  // --- BATCH 2: Cloud Infrastructure & DevOps (35 Candidates, DISTRICT_REVIEW - Dev has signed off, Meera/Kabir need to sign) ---
+  // --- BATCH 2: Cloud Infrastructure & DevOps (35 Candidates, DISTRICT_REVIEW - Dev has signed off, Meera needs to sign) ---
   const batch2 = await prisma.batch.create({
     data: {
       batchNumber: 'CF/2026/CLOUD/002',
@@ -515,7 +505,7 @@ async function main() {
       },
       {
         batchId: batch4.id,
-        officerId: userKabir.id,
+        officerId: userMeera.id,
         role: Role.DISTRICT_OFFICER,
         decision: ApprovalDecision.APPROVED,
         comments: 'Second district signoff complete. Batch exceeds 50 candidates, routing to Quality Team.',

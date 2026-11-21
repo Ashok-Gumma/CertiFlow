@@ -666,7 +666,7 @@ export const CreateBatchPage: React.FC = () => {
           </div>
 
           <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-slate-700 text-xs">
-            ℹ️ Submitting this batch will immediately notify District Officers (Dev, Meera, Kabir) for the required 2
+            ℹ️ Submitting this batch will immediately notify District Officers (Dev & Meera) for the required 2
             distinct sign-offs.
             {validationResult && validationResult.validCount >= 50 && (
               <span className="block mt-1 font-semibold text-slate-900">
