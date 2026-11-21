@@ -93,7 +93,11 @@ export const LoginPage: React.FC = () => {
     return Award;
   };
 
-  const currentAccount = demoUsers.find((u) => u.email === selectedDemo) || demoUsers[0];
+  const activeDemoUsers = demoUsers.filter((u) => u.email !== 'kabir@certiflow.gov.in');
+  const tcAndDistrictUsers = activeDemoUsers.filter((u) => u.role === 'TRAINING_CENTRE' || u.role === 'DISTRICT_OFFICER');
+  const stateAndQualityUsers = activeDemoUsers.filter((u) => u.role === 'QUALITY_TEAM' || u.role === 'STATE_OFFICE');
+
+  const currentAccount = activeDemoUsers.find((u) => u.email === selectedDemo) || activeDemoUsers[0];
 
   return (
     <div className="min-h-screen bg-[#F1F5F9] flex flex-col justify-center items-center py-12 px-4 selection:bg-indigo-100 selection:text-indigo-900">
@@ -155,7 +159,7 @@ export const LoginPage: React.FC = () => {
 
           {/* Row 1: Training Centre + 2 District Officers */}
           <div className="grid grid-cols-3 gap-2 mb-2">
-            {demoUsers.slice(0, 3).map((account) => {
+            {tcAndDistrictUsers.map((account) => {
               const Icon = getPersonaIcon(account.role);
               const isActive = selectedDemo === account.email;
               const levelName = getOfficerLevelName(account.role, account.name);
@@ -184,7 +188,7 @@ export const LoginPage: React.FC = () => {
 
           {/* Row 2: Quality & State Directorate */}
           <div className="grid grid-cols-2 gap-2">
-            {demoUsers.slice(3, 5).map((account) => {
+            {stateAndQualityUsers.map((account) => {
               const Icon = getPersonaIcon(account.role);
               const isActive = selectedDemo === account.email;
               const levelName = getOfficerLevelName(account.role, account.name);
