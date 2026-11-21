@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F8FAFC] text-[#111827] antialiased selection:bg-indigo-100 selection:text-indigo-900;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Ambient glow & mesh background */
+.bg-mesh {
+  background-color: #F8FAFC;
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 90% 20%, rgba(168, 85, 247, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(59, 130, 246, 0.06) 0px, transparent 50%);
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Gold foil seal reflection */
+.gold-seal-glow {
+  background: radial-gradient(circle at 30% 30%, #FFF4CC 0%, #E6C265 50%, #B38828 100%);
+  box-shadow: 0 4px 15px -1px rgba(184, 134, 11, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+/* Metallic certificate border */
+.certificate-gold-border {
+  border-image: linear-gradient(135deg, #d4af37, #f3e5ab, #aa771c, #ffd700, #b8860b) 1;
+}
+
+/* Hologram sheen animation */
+@keyframes sheen {
+  0% { transform: translateX(-150%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
+}
+
+.animate-sheen {
+  animation: sheen 6s infinite ease-in-out;
+}
+
+/* Scanline laser animation for verification */
+@keyframes scanline {
+  0% { top: 0%; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.animate-scanline {
+  animation: scanline 2.2s infinite ease-in-out;
+}
+
+/* Subtle glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
